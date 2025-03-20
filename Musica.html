@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Música para Ti</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .contenedor-musica {
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 30px;
+            font-size: 36px;
+        }
+        .disco {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #222 30%, #444 50%, #000 80%);
+            display: inline-block;
+            margin: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+        .disco:hover {
+            transform: rotate(360deg);
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+        .disco::after {
+            content: "";
+            width: 40px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .botones {
+            margin-top: 20px;
+        }
+        .boton-pausa {
+            padding: 10px 20px;
+            background-color: #e74c3c;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+        .boton-pausa:hover {
+            background-color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <div class="contenedor-musica">
+        <h1>Elige una canción</h1>
+        <div class="disco" onclick="playMusic('Iris.mp3')"></div>
+        <div class="disco" onclick="playMusic('Beso.mp3')"></div>
+        <div class="disco" onclick="playMusic('Girlfriend.mp3')"></div>
+        <div class="disco" onclick="playMusic('Love.mp3')"></div>
+        <div class="botones">
+            <button class="boton-pausa" onclick="togglePause()">Pausar/Reanudar</button>
+        </div>
+        <audio id="audio"></audio>
+    </div>
+
+    <script>
+        let audio = document.getElementById("audio");
+
+        function playMusic(song) {
+            audio.src = song;
+            audio.play();
+        }
+
+        function togglePause() {
+            if (audio.paused) {
+                audio.play();
+                document.querySelector(".boton-pausa").textContent = "Pausar";
+            } else {
+                audio.pause();
+                document.querySelector(".boton-pausa").textContent = "Reanudar";
+            }
+        }
+    </script>
+</body>
+</html>
